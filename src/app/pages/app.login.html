@@ -1,0 +1,37 @@
+<div class="login">
+  <h2>登录页</h2>
+
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm(validateForm.value)">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>名称</nz-form-label>
+      <nz-form-control [nzSpan]="14" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+        <input nz-input formControlName="userName" placeholder="请输入名称" />
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            请输入名称
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>密码</nz-form-label>
+      <div>
+        <nz-form-control [nzSpan]="14" nzHasFeedback nzErrorTip="请输入密码">
+          <input nz-input type="password" formControlName="password" placeholder="请输入密码" />
+        </nz-form-control>
+      </div>
+    </nz-form-item>
+    <nz-form-item *ngIf="errorMessage">
+      <nz-alert nzType="error" nzMessage="{{errorMessage}}"></nz-alert>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary">提交</button>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-tag [nzColor]="'blue'">admin</nz-tag>
+      <nz-tag [nzColor]="'blue'">123456</nz-tag>
+    </nz-form-item>
+  </form>
+</div>

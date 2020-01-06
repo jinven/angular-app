@@ -1,0 +1,44 @@
+header{
+  position: relative;
+  padding: 0 10px;
+  height:30px;
+  line-height: 30px;
+  background-color:rgba(0, 40, 249, 0.3);
+  overflow: hidden;
+  text-align: right;
+  p{
+    display: inline-block;
+    margin:0;
+    padding:0 10px 0 0;
+    color:#eee;
+    font-size:14px;
+    .el-button{
+      padding: 3px 15px;
+      border:1px solid #eee;
+    }
+  }
+  .success{
+    color:#a2ffa2;
+    font-weight: bold;
+  }
+  .app-lang{
+    margin-right:10px;
+    .el-input{
+      width:90px;
+      .el-input__inner{
+        background-color:rgba(95, 91, 91, 0.5);
+        height:22px;
+        color:#eee;
+      }
+    }
+  }
+  .ant-tag{
+    float: left;
+    margin: 5px;
+  }
+  .ant-select .ant-select-selection {
+    background-color: rgba(95,91,91,.5);
+    color: #eee;
+    font-size: 12px;
+  }
+}
