@@ -4,12 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "start:zh": "ng serve --configuration=zh",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "eslint": "eslint src/**/*.ts",
-    "eslint2": "eslint --ext .js,.ts --ignore-path .gitignore ."
+    "eslint2": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "extract": "ng xi18n --output-path=src/locale && ng xi18n --output-path src/locale --i18n-locale zh --out-file messages.zh.xlf"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,8 @@
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
     "@ant-design/icons-angular": "^8.1.1",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "ng-zorro-antd": "^8.5.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

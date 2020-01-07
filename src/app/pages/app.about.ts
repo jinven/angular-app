@@ -1,11 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service'
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 @Component({
   selector: 'app-about',
-  template: '<h1>{{aboutPage}}</h1><h2>{{loginState}} - {{this.loginService.isLogin() ? "已登录" : "未登录"}}</h2>',
+  template: '<h1>{{aboutPage}}</h1><h2>{{loginState | translate}} - {{loginTxt | translate}}</h2>',
 })
-export class AppAbout {
-  aboutPage: string = '关于页面';
-  loginState: string = '登录状态';
-  constructor(private loginService: LoginService) {}
+export class AppAbout implements OnInit {
+  aboutPage: string = '';
+  loginState: string = 'loginstate';
+  loginTxt: string;
+  constructor(private loginService: LoginService, private translate: TranslateService) {
+    this.loginTxt = this.loginService.isLogin() ? 'logined' : 'nologin'
+    if(this.translate.store.translations && this.translate.store.translations[this.translate.currentLang]){
+      this.aboutPage = this.translate.store.translations[this.translate.currentLang]['about_page'];
+    }
+    this.translate.getTranslation(this.translate.currentLang).subscribe((ev) => {
+      if(ev && ev.translations){
+        this.aboutPage = ev.translations['about_page'];
+      }
+    });
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+        if(event.translations){
+        this.aboutPage = event.translations['about_page'];
+      }
+    });
+  }
+  ngOnInit(){}
 }

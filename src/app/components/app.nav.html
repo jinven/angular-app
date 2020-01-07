@@ -1,8 +1,22 @@
 <div class="nav" role="banner">
   <nav>
-    <ul>
-      <li><a routerLink="/login" routerLinkActive="active">登录</a></li>
-      <li><a routerLink="/about" routerLinkActive="active">关于</a></li>
+    <ul *ngIf="!isLogin">
+      <li><a routerLink="/login" routerLinkActive="active" translate>login</a></li>
+      <li><a routerLink="/about" routerLinkActive="active" translate>about</a></li>
+    </ul>
+    <ul *ngIf="isLogin">
+      <li><a routerLink="/home" routerLinkActive="active" translate>home</a></li>
+      <li><a routerLink="/language" routerLinkActive="active" translate>language</a></li>
+      <li><a routerLink="/ant" routerLinkActive="active">Ant</a></li>
+      <li><a routerLink="/route" routerLinkActive="active" translate>route</a></li>
+      <li><a routerLink="/axios" routerLinkActive="active">Axios</a></li>
+      <li><a routerLink="/http" routerLinkActive="active">HttpClient</a></li>
+      <li><a routerLink="/crypto" routerLinkActive="active">Crypto</a></li>
+      <li><a routerLink="/nodeforge" routerLinkActive="active">NodeForge</a></li>
+      <li><a routerLink="/socket" routerLinkActive="active">Socket</a></li>
+      <li><a routerLink="/rxjs" routerLinkActive="active">rxjs</a></li>
+      <li><a routerLink="/service" routerLinkActive="active" translate>service</a></li>
+      <li><a routerLink="/dynamic" routerLinkActive="active">Dynamic</a></li>
     </ul>
   </nav>
 </div>

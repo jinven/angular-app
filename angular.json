@@ -67,6 +67,36 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "production-zh": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "outputPath": "dist/my-project-zh/",
+              "i18nFile": "src/locale/messages.zh.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh",
+              "i18nMissingTranslation": "error"
+            },
+            "zh": {
+              "aot": true,
+              "outputPath": "dist/my-project-zh/",
+              "i18nFile": "src/locale/messages.zh.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "zh",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -78,6 +108,9 @@
           "configurations": {
             "production": {
               "browserTarget": "my-first-project:build:production"
+            },
+            "zh": {
+              "browserTarget": "my-first-project:build:zh"
             }
           }
         },

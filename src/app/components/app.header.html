@@ -1,8 +1,8 @@
 <header>
   <nz-tag [nzColor]="'green'">{{env}}</nz-tag>
   <p *ngIf="!isLogin">{{loginText}}</p>
-  <p *ngIf="isLogin"><button nz-button nzSize="small" nzType="danger" (click)="logout()">{{logoutText}}</button></p>
-  <nz-select nzShowSearch nzAllowClear nzSize="small" [(ngModel)]="selectedValue">
+  <p *ngIf="isLogin"><button nz-button nzSize="small" nzType="danger" (click)="logout()" translae>{{logoutText}}</button></p>
+  <nz-select nzShowSearch nzAllowClear nzSize="small" [(ngModel)]="selectedValue" (ngModelChange)="nzSelected($event)">
     <nz-option nzLabel="English" nzValue="en"></nz-option>
     <nz-option nzLabel="中文" nzValue="zh"></nz-option>
   </nz-select>

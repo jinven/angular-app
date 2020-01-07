@@ -12,6 +12,8 @@ import { AppHeader } from './components/app.header';
 import { AppNav } from './components/app.nav';
 import { AppAbout } from './pages/app.about';
 import { AppLogin } from './pages/app.login';
+import { AppMain } from './pages/app.main';
+import { AppLang } from './pages/app.lang';
 
 // services
 import { LoginService } from './services/login.service'
@@ -20,18 +22,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgZorroAntdModule, NZ_I18N, NZ_ICONS, zh_CN } from 'ng-zorro-antd';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
+// i18n
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 registerLocaleData(zh);
+
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
-
 @NgModule({
-  declarations: [AppHome, AppHeader, AppNav, AppAbout, AppLogin],
+  declarations: [AppHome, AppHeader, AppNav, AppAbout, AppLogin, AppMain, AppLang],
   imports: [
     BrowserModule,
     FormsModule,
@@ -40,6 +46,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     BrowserAnimationsModule,
     NgZorroAntdModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
@@ -49,7 +62,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
   bootstrap: [AppHome],
 })
 export class AppModule {
-  constructor(router: Router) {
+  constructor(router: Router) {}
+}
 
-  }
+export function HttpLoaderFactory(http: HttpClient){
+  return new TranslateHttpLoader(http);
 }

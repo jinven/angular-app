@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LoginService } from '../services/login.service'
 import { LoginRxjsService } from '../services/loginRxjs.service'
+import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +15,13 @@ export class AppLogin implements OnInit {
   validateForm: FormGroup;
   errorMessage: string;
   constructor(
+    private router: Router,
     private fb: FormBuilder, 
     private message: NzMessageService,
     private loginService: LoginService,
-    private loginRxjsService: LoginRxjsService
-  ) { }
+    private loginRxjsService: LoginRxjsService,
+    private translate: TranslateService
+  ) {}
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -30,8 +34,9 @@ export class AppLogin implements OnInit {
     } else {
       this.errorMessage = null;
       this.loginService.toLogin();
-      this.loginRxjsService.setOutput(this.validateForm.value.userName);
-      this.message.create('success', `登录成功`);
+      this.loginRxjsService.setLogin(this.validateForm.value.userName);
+      this.message.create('success', this.translate.store.translations[this.translate.store.currentLang]['loginsuccess']);
+      this.router.navigate(['/home']);
     }
   }
   ngOnInit(): void {
